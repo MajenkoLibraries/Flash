@@ -35,7 +35,6 @@ bool FlashClass::isNvmError() {
 }
 
 bool __attribute__((nomips16)) FlashClass::doNvmOp(uint32_t nvmop) {
-    int         nvmSt;
     int         intSt;
     uint32_t    tm;
 
@@ -81,7 +80,6 @@ bool FlashClass::loadPage(void *adr) {
 bool FlashClass::savePage() {
     uint32_t *ptr = (uint32_t *)_page_address;
     erasePage(ptr);
-    uint32_t *p = ptr;
     for (int i = 0; i < PAGE_SIZE; i++) {
         writeWord(ptr, _flash_buffer[i]);
         ptr++;
