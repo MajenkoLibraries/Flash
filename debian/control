@@ -1,0 +1,14 @@
+Source: libflash-chipkit
+Section: libraries
+Priority: extra
+XBSC-Group: Storage
+XBSC-Family: pic32
+Maintainer: Matt Jenkins <matt@majenko.co.uk>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+
+Package: libflash-chipkit
+Architecture: all
+Depends: chipkit
+Description: Flash library for chipkit
+
