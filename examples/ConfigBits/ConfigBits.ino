@@ -148,7 +148,7 @@ void subMenuFooter() {
 	Serial.print("Select an entry to change: ");
 }
 
-void heading(char *t) {
+void heading(const char *t) {
 	int len = strlen(t);
 	for (int x = 0; x < 40 - len / 2; x++) {
 		Serial.write(' ');
