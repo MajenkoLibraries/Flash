@@ -2,6 +2,7 @@ Source: libflash-chipkit
 Section: libraries
 Priority: extra
 XBSC-Group: Storage
+XBSC-Subgroup: Flash
 XBSC-Family: pic32
 Maintainer: Matt Jenkins <matt@majenko.co.uk>
 Build-Depends: debhelper (>= 8.0.0)
