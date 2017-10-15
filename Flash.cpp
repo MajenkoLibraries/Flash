@@ -7,7 +7,11 @@ bool FlashClass::erasePage(void* adr) {
 
 bool FlashClass::writeWord(void* adr, uint32_t val) {
     NVMADDR = KVA_TO_PA((unsigned int) adr);
+#if defined(__PIC32MZ__)
+    NVMDATA0 = val;
+#else
     NVMDATA = val;
+#endif
     return doNvmOp(nvmopWriteWord);
 }
 
@@ -43,20 +47,20 @@ bool __attribute__((nomips16)) FlashClass::doNvmOp(uint32_t nvmop) {
     // to add code here to suspend DMA during the NVM operation.
 
     intSt = disableInterrupts();
-    NVMCON = NVMCON_WREN | nvmop;
+    NVMCON = _NVMCON_WREN_MASK | nvmop;
 
     tm = _CP0_GET_COUNT();
     while (_CP0_GET_COUNT() - tm < ((F_CPU * 6) / 2000000));
 
     NVMKEY      = 0xAA996655;
     NVMKEY      = 0x556699AA;
-    NVMCONSET   = NVMCON_WR;
+    NVMCONSET   = _NVMCON_WR_MASK;
 
-    while (NVMCON & NVMCON_WR) {
+    while (NVMCON & _NVMCON_WR_MASK) {
 		continue;
     }
 
-    NVMCONCLR = NVMCON_WREN;
+    NVMCONCLR = _NVMCON_WREN_MASK;
 
     //M00TODO: Resume a suspended DMA operation
 
@@ -105,6 +109,10 @@ bool FlashClass::verifyPage() {
         ptr++;
     }
     return true;
+}
+
+bool FlashClass::eraseProgmem() {
+    return doNvmOp(nvmopEraseProgmem);
 }
 
 FlashClass Flash;
