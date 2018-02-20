@@ -1,9 +1,9 @@
 #ifndef _FLASH_H
 #define _FLASH_H
 
-#define PAGE_SIZE               1024        // # of 32-bit Instructions per Page
+#define PAGE_SIZE               _EEPROM_PAGE_SIZE
 #define BYTE_PAGE_SIZE          (4 * PAGE_SIZE) // Page size in Bytes
-#define ROW_SIZE                128         // # of 32-bit Instructions per Row
+#define ROW_SIZE                128
 #define BYTE_ROW_SIZE           (4 * ROW_SIZE) // # Row size in Bytes
 #define NUM_ROWS_PAGE           8              //Number of Rows per Page
 
