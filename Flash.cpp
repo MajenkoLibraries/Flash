@@ -18,7 +18,7 @@ bool FlashClass::writeWord(void* adr, uint32_t val) {
 bool FlashClass::writeRow(void* adr, void *val) {
 	bool blank = true;
 	for (int i = 0; i < ROW_SIZE; i++) {
-		if (((char *)val)[i] != 0xFF) {
+		if (((uint8_t *)val)[i] != 0xFF) {
 			blank = false;		
 		}
 	}
