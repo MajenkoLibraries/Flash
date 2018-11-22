@@ -1,6 +1,0 @@
-Flash.cpp libraries/Storage/chipkit/Flash/
-Flash.h libraries/Storage/chipkit/Flash/
-LICENSE.md usr/share/doc/libflash-chipkit/
-README.md usr/share/doc/libflash-chipkit/
-examples/ConfigBits/ConfigBits.ino libraries/Storage/chipkit/Flash/examples/ConfigBits
-examples/ConfigBits/ConfigBits.h libraries/Storage/chipkit/Flash/examples/ConfigBits
