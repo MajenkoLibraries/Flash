@@ -17,7 +17,7 @@ bool FlashClass::writeWord(void* adr, uint32_t val) {
 
 bool FlashClass::writeRow(void* adr, void *val) {
 	bool blank = true;
-	for (int i = 0; i < ROW_SIZE; i++) {
+	for (int i = 0; i < __FLASH_ROW__; i++) {
 		if (((uint8_t *)val)[i] != 0xFF) {
 			blank = false;		
 		}
@@ -71,10 +71,10 @@ bool __attribute__((nomips16)) FlashClass::doNvmOp(uint32_t nvmop) {
 bool FlashClass::loadPage(void *adr) {
     uint32_t *ptr = (uint32_t *)adr;
 
-    ptr = (uint32_t *)((uint32_t)ptr & ~((PAGE_SIZE*4)-1));
+    ptr = (uint32_t *)((uint32_t)ptr & ~((__FLASH_PAGE__*4)-1));
     _page_address = (uint32_t)ptr;
 
-    for (int i = 0; i < PAGE_SIZE; i++) {
+    for (int i = 0; i < __FLASH_PAGE__; i++) {
         _flash_buffer[i] = *ptr;
         ptr++;
     }
@@ -84,7 +84,7 @@ bool FlashClass::loadPage(void *adr) {
 bool FlashClass::savePage() {
     uint32_t *ptr = (uint32_t *)_page_address;
     erasePage(ptr);
-    for (int i = 0; i < PAGE_SIZE; i++) {
+    for (int i = 0; i < __FLASH_PAGE__; i++) {
         writeWord(ptr, _flash_buffer[i]);
         ptr++;
     }
@@ -93,7 +93,7 @@ bool FlashClass::savePage() {
 
 bool FlashClass::writePageWord(void *adr, uint32_t val) {
     uint32_t a = (uint32_t)adr - _page_address;
-    if (a > PAGE_SIZE * 4) {
+    if (a > __FLASH_PAGE__ * 4) {
         return false;
     }
     _flash_buffer[a/4] = val;
@@ -102,7 +102,7 @@ bool FlashClass::writePageWord(void *adr, uint32_t val) {
 
 bool FlashClass::verifyPage() {
     uint32_t *ptr = (uint32_t *)_page_address;
-    for (int i = 0; i < PAGE_SIZE; i++) {
+    for (int i = 0; i < __FLASH_PAGE__; i++) {
         if (*ptr != _flash_buffer[i]) {
             return false;
         }

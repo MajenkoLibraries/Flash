@@ -1,13 +1,7 @@
 #ifndef _FLASH_H
 #define _FLASH_H
 
-#define PAGE_SIZE               _EEPROM_PAGE_SIZE
-#define BYTE_PAGE_SIZE          (4 * PAGE_SIZE) // Page size in Bytes
-#define ROW_SIZE                128
-#define BYTE_ROW_SIZE           (4 * ROW_SIZE) // # Row size in Bytes
-#define NUM_ROWS_PAGE           8              //Number of Rows per Page
-
-#include <WProgram.h>
+#include <Arduino.h>
 #include <sys/kmem.h>
 
 class FlashClass {
@@ -22,7 +16,7 @@ class FlashClass {
 		bool clearNvmError();
 		bool isNvmError();
 
-        uint32_t _flash_buffer[PAGE_SIZE];
+        uint32_t _flash_buffer[__FLASH_PAGE__];
         uint32_t _page_address;
 
 	public:
