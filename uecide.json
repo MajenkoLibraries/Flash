@@ -1,18 +1,1 @@
-{
-    "name": "Flash",
-    "provides": "Flash.h",
-    "license": "LICENSE.md",
-    "readme": "README.md",
-    "description": "Read and write the flash memory of a PIC32",
-    "category": "Storage",
-    "subcategory": "Flash",
-    "maintainer": "Matt Jenkins <matt@majenko.co.uk>",
-    "version": "1.1.5",
-    "family": "pic32",
-    "core": "chipkit",
-    "install": {
-        "examples": "/",
-        "Flash.cpp": "/",
-        "Flash.h": "/"
-    }
-}
+{"name":"Flash","provides":"Flash.h","license":"LICENSE.md","readme":"README.md","description":"Read and write the flash memory of a PIC32","category":"Storage","subcategory":"Flash","maintainer":"Matt Jenkins <matt@majenko.co.uk>","version":"1.1.6","family":"pic32","core":"chipkit","install":{"examples":"\/","library.properties":"\/","src":"\/"}}
